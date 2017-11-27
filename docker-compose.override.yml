@@ -4,5 +4,6 @@ services:
   backend:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - TOKEN=${TOKEN}
     ports:
       - "80"
