@@ -32,11 +32,11 @@ namespace Models.Tests
         {
             ParsedRequest parsedRequest;
             string error;
-            var isOk = ParsedRequest.Parse("20 Johan +47 123 4567890", 1, out parsedRequest, out error);
+            var isOk = ParsedRequest.Parse("20 Johan 1234-567890", 1, out parsedRequest, out error);
 
             Assert.True(isOk);
             Assert.Equal(parsedRequest.name, "Johan");
-            Assert.Equal(parsedRequest.phone, "+471234567890");
+            Assert.Equal(parsedRequest.phone, "1234-567890");
             Assert.Equal(parsedRequest.age, 20);
         }
 
