@@ -1,6 +1,6 @@
-FROM gcr.io/google-appengine/aspnetcore:2.0
-COPY . /app
+FROM microsoft/aspnetcore:2.0
+ARG source
 WORKDIR /app
-EXPOSE 8080
-ENV ASPNETCORE_URLS=http://*:8080
+EXPOSE 80
+COPY ${source:-obj/Docker/publish} .
 ENTRYPOINT ["dotnet", "Backend.dll"]
