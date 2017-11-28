@@ -1,0 +1,4 @@
+runtime: aspnetcore
+env: flex
+env_variables:
+  TOKEN: '5be75dd0-9125-433e-9ada-0a23a891b132'
