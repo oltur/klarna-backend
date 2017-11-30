@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>24445447-7b9d-4210-bdb0-e4dc56ec2c2d</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:{ServicePort}/api/search?query=5802-8 Marie P 40&amp;page=1</DockerServiceUrl>
     <DockerServiceName>backend</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

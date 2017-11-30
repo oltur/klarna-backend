@@ -12,6 +12,11 @@ namespace Models
         public string phone { get; set; }
         public int page { get; set; }
 
+        public bool Isvalid
+        {
+            get { return GetError() == null; }
+        }
+
         public string GetError()
         {
             if (name == null && !age.HasValue && phone == null)
@@ -42,7 +47,7 @@ namespace Models
                 if (part.All(c => (c >= '0' && c <= '9') || c == '-'))
                 {
                     inName = false;
-                    if (part.All(c => c >= '0' && c <= '9') && part.Length < 4)
+                    if (part.All(c => c >= '0' && c <= '9') && int.Parse(part) < 150)
                     {
                         ageCandidates.Add(int.Parse(part));
                     }
@@ -68,7 +73,7 @@ namespace Models
             parsedRequest.name = nameCandidates.Any() ? nameCandidates.OrderByDescending(a => a.Length).First().ToString() : null;
             parsedRequest.phone = phoneCandidates.Any() ? phoneCandidates.OrderByDescending(a => a.Length).First().ToString() : null;
 
-            return error == null;
+            return error == null && parsedRequest.Isvalid;
         }
     }
 }

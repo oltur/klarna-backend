@@ -28,7 +28,7 @@ namespace Models.Tests
         }
 
         [Fact]
-        public void Test20JohanPlus47123456789()
+        public void TestAllComponents()
         {
             ParsedRequest parsedRequest;
             string error;
@@ -41,6 +41,18 @@ namespace Models.Tests
         }
 
         [Fact]
+        public void TestNameWithSpaceAndAge()
+        {
+            ParsedRequest parsedRequest;
+            string error;
+            var isOk = ParsedRequest.Parse("ders Karl 24", 1, out parsedRequest, out error);
+
+            Assert.True(isOk);
+            Assert.Equal(parsedRequest.name, "ders Karl");
+            Assert.Null(parsedRequest.phone);
+            Assert.Equal(parsedRequest.age, 24);
+        }
+        [Fact]
         public void TestA()
         {
             ParsedRequest parsedRequest;
@@ -49,6 +61,42 @@ namespace Models.Tests
 
             Assert.True(isOk);
             Assert.Equal(parsedRequest.name, "A");
+            Assert.Null(parsedRequest.phone);
+            Assert.Null(parsedRequest.age);
+        }
+
+        [Fact]
+        public void TestPhone160()
+        {
+            ParsedRequest parsedRequest;
+            string error;
+            var isOk = ParsedRequest.Parse("160", 1, out parsedRequest, out error);
+
+            Assert.True(isOk);
+            Assert.Null(parsedRequest.name);
+            Assert.Equal(parsedRequest.phone, "160");
+            Assert.Null(parsedRequest.age);
+        }
+
+        [Fact]
+        public void TestEmpty()
+        {
+            ParsedRequest parsedRequest;
+            string error;
+            var isOk = ParsedRequest.Parse("", 1, out parsedRequest, out error);
+
+            Assert.False(isOk);
+        }
+
+        [Fact]
+        public void TestMix()
+        {
+            ParsedRequest parsedRequest;
+            string error;
+            var isOk = ParsedRequest.Parse("A1B2C3", 1, out parsedRequest, out error);
+
+            Assert.True(isOk);
+            Assert.Equal(parsedRequest.name, "A1B2C3");
             Assert.Null(parsedRequest.phone);
             Assert.Null(parsedRequest.age);
         }
